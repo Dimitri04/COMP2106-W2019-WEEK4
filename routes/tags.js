@@ -4,6 +4,13 @@ const tags = require('../meta/tags');
 const articles = require('../meta/articles');
 
 /* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.render('tag-list', {
+    title: 'List of Tags',
+    tags
+  });
+});
+
 router.get('/:slug', function(req, res, next) {
   const slug = req.params.slug;
   const isValidSlug = tags.some(function(tag) {
