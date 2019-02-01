@@ -1,0 +1,22 @@
+extends layout
+
+mixin tags(tags)
+  div
+    each tag in tags
+      span.badge.badge-primary.mr-3= tag
+block content
+  .container-fluid
+    .row
+      .col-9
+        .card
+          img.w-100(src=article.image, style="max-height: 400px; object-fit: cover")
+          h1= article.name
+          h5= article.authors
+          +tags(article.tags)
+          #content !{article.content}
+      //- Content Goes Here
+      // Test
+      //- End Content
+      .col-3
+        .card
+          .card-body Side Bar
