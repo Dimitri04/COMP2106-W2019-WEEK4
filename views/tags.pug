@@ -1,0 +1,22 @@
+extends layout
+
+mixin articleCard({ name, authors, dateSubmitted, tags })
+  .card.mb-3
+    .card-body
+      h4= name
+      h6= authors
+
+      div #{dateSubmitted} - #{tags}
+
+block content
+  .container-fluid
+    .jumbotron
+      .d-flex.justify-content-center.align-items-center
+        h1.text-center= title
+        button.btn.btn-primary.mx-3 Subscribe
+  .row
+    .col-3
+    .col-6
+      each article in articles
+        +articleCard(article)
+    .col-3
