@@ -1,12 +1,27 @@
 extends layout
 
-mixin articleCard({ name, authors, dateSubmitted, tags })
+mixin renderTags(tags)
+  ul.d-flex
+    each tag in tags
+      li
+        a(href=`/t/${tag}`)= tag
+mixin articleCard({ name, authors, dateSubmitted, tags, likes, comment })
   .card.mb-3
     .card-body
       h4= name
       h6= authors
 
-      div #{dateSubmitted} - #{tags}
+      span #{dateSubmitted.toDateString()} -
+      +renderTags(tags)
+      .d-flex.justify-content-between.align-items-center
+        .left-section
+          span.likes.mr-3
+            i.fas.fa-heart.mr-2
+            span= likes
+          span.comments
+            i.fas.fa-comments.mr-2
+            span= comment
+        .right-section
 
 block content
   .container-fluid
